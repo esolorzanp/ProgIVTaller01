@@ -1,5 +1,7 @@
 package model;
 
+import util.Numbers;
+
 public class Numeros {
     private int x;
     private int y;
@@ -11,8 +13,8 @@ public class Numeros {
 
     public Numeros(boolean b) {
         if (b) {
-            this.x = this.calcAleatorio(1, 10);
-            this.y = this.calcAleatorio(1, 10);
+            this.x = Numbers.calcAleatorio(1, 10);
+            this.y = Numbers.calcAleatorio(1, 10);
         } else {
             this.x = x;
             this.y = y;
@@ -63,9 +65,9 @@ public class Numeros {
         return r;
     }
 
-    public int calcAleatorio(int min, int max) {
-        return (int) (Math.random() * (max - min + 1)) + min;
-    }
+//    public int calcAleatorio(int min, int max) {
+//        return (int) (Math.random() * (max - min + 1)) + min;
+//    }
 
     public static void main(String[] args) {
         for (int i = 0; i < 10; i++) {
