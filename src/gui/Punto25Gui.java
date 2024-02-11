@@ -1,23 +1,24 @@
 package gui;
 
-import model.Numeros;
+import model.Triangulo;
 import util.Numbers;
 
 import javax.swing.*;
 import java.awt.event.*;
 
-public class Punto21Gui extends JDialog {
+public class Punto25Gui extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JTextField primerNumeroTextField;
-    private JTextField segundoNumeroTextField;
+    private JTextField ladoATextField;
+    private JTextField ladoBTextField;
+    private JTextField ladoCTextField;
     private JButton validarButton;
-    private JTextField resultadoTextField;
     private JButton limpiarCamposButton;
+    private JTextField resultadoTextField;
     private JButton asignaValoresAleatoriosButton;
 
-    public Punto21Gui() {
+    public Punto25Gui() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -49,44 +50,50 @@ public class Punto21Gui extends JDialog {
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
-        validarButton.addActionListener(e -> validarCampos());
+        validarButton.addActionListener(e -> validar());
         limpiarCamposButton.addActionListener(e -> limpiarCampos());
         asignaValoresAleatoriosButton.addActionListener(e -> asignaValoresAleatorios());
 
-        setSize(500, 300);
-        setLocationRelativeTo(this);
-        setVisible(true);
+        this.setSize(500, 320);
+        this.setLocationRelativeTo(this);
+        this.setVisible(true);
     }
 
-    private void validarCampos() {
-        String strPn = primerNumeroTextField.getText();
-        String strSn = segundoNumeroTextField.getText();
-        if (strPn.isEmpty())
-            JOptionPane.showMessageDialog(null, "Ingrese un primer número", "Validación", JOptionPane.WARNING_MESSAGE);
-        else if (strSn.isEmpty())
-            JOptionPane.showMessageDialog(null, "Ingrese un segundo número", "Validación", JOptionPane.WARNING_MESSAGE);
+    private void validar() {
+        String strLadoA = ladoATextField.getText();
+        String strLadoB = ladoBTextField.getText();
+        String strLadoC = ladoCTextField.getText();
+        if (strLadoA.isEmpty())
+            JOptionPane.showMessageDialog(null, "Ingrese un valor de lado a del triángulo", "Validación", JOptionPane.WARNING_MESSAGE);
+        else if (strLadoB.isEmpty())
+            JOptionPane.showMessageDialog(null, "Ingrese un valor de lado b del triángulo", "Validación", JOptionPane.WARNING_MESSAGE);
+        else if (strLadoC.isEmpty())
+            JOptionPane.showMessageDialog(null, "Ingrese un valor de lado c del triángulo", "Validación", JOptionPane.WARNING_MESSAGE);
         else {
-            int pn = Integer.parseInt(strPn);
-            int sn = Integer.parseInt(strSn);
-            Numeros n = new Numeros(pn, sn);
-            resultadoTextField.setText(String.valueOf(n.getValidacion()));
+            int a = Integer.parseInt(strLadoA);
+            int b = Integer.parseInt(strLadoB);
+            int c = Integer.parseInt(strLadoC);
+            Triangulo t = new Triangulo(a, b, c);
+            resultadoTextField.setText(t.getValidacion());
         }
     }
 
     private void limpiarCampos() {
-        primerNumeroTextField.setText("");
-        segundoNumeroTextField.setText("");
+        ladoATextField.setText("");
+        ladoBTextField.setText("");
+        ladoCTextField.setText("");
         resultadoTextField.setText("");
     }
-
 
     private void asignaValoresAleatorios() {
         int min = 1;
         int max = 20;
-        int pn = Numbers.calcAleatorio(min,max);
-        int sn = Numbers.calcAleatorio(min,max);
-        primerNumeroTextField.setText(String.valueOf(pn));
-        segundoNumeroTextField.setText(String.valueOf(sn));
+        int a = Numbers.calcAleatorio(min,max);
+        int b = Numbers.calcAleatorio(min,max);
+        int c = Numbers.calcAleatorio(min,max);
+        ladoATextField.setText(String.valueOf(a));
+        ladoBTextField.setText(String.valueOf(b));
+        ladoCTextField.setText(String.valueOf(c));
     }
 
     private void onOK() {
@@ -100,9 +107,8 @@ public class Punto21Gui extends JDialog {
     }
 
     public static void main(String[] args) {
-        Punto21Gui dialog = new Punto21Gui();
+        Punto25Gui dialog = new Punto25Gui();
         dialog.pack();
-//        dialog.setVisible(true);
         System.exit(0);
     }
 }
