@@ -65,16 +65,22 @@ public class Numeros {
         return r;
     }
 
-//    public int calcAleatorio(int min, int max) {
-//        return (int) (Math.random() * (max - min + 1)) + min;
-//    }
+    @Override
+    public String toString() {
+        return "Numeros{" +
+                "x=" + x +
+                ", y=" + y +
+                ", getValidacion=" + this.getValidacion() +
+                '}';
+    }
 
     public static void main(String[] args) {
         for (int i = 0; i < 10; i++) {
-            Numeros n1 = new Numeros(true);
-            System.out.println("1er número: " + n1.getX()
-                    + '\n' + "2do número: " + n1.getY()
-                    + '\n' + n1.getValidacion());
+            Numeros n = new Numeros(true);
+            System.out.println(n.toString());
+//            System.out.println("1er número: " + n1.getX()
+//                    + '\n' + "2do número: " + n1.getY()
+//                    + '\n' + n1.getValidacion());
         }
 
     }

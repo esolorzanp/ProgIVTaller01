@@ -60,13 +60,24 @@ public class Triangulo {
         return s;
     }
 
+    @Override
+    public String toString() {
+        return "Triangulo = {" +
+                "a=" + a +
+                ", b=" + b +
+                ", c=" + c +
+                ", getValidacion=" + this.getValidacion() +
+                '}';
+    }
+
     public static void main(String[] args) {
         for (int i = 0; i < 10; i++) {
             Triangulo t = new Triangulo(true);
-            System.out.println("Lado a: " + t.getA()
-                    + '\n' + "Lado b: " + t.getB()
-                    + '\n' + "Lado c: " + t.getC()
-                    + '\n' + t.getValidacion());
+            System.out.println(t.toString());
+//            System.out.println("Lado a: " + t.getA()
+//                    + '\n' + "Lado b: " + t.getB()
+//                    + '\n' + "Lado c: " + t.getC()
+//                    + '\n' + t.getValidacion());
 
         }
     }
