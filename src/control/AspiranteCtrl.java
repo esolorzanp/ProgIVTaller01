@@ -2,6 +2,7 @@ package control;
 
 import model.Aspirante;
 
+import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,19 +10,19 @@ public class AspiranteCtrl {
     private List<Aspirante> aspirantes;
 
     public AspiranteCtrl() {
-        aspirantes = new ArrayList<Aspirante>();
+        this.aspirantes = new ArrayList<Aspirante>();
     }
 
     public boolean adicionar(Aspirante objAspir) {
         if (!this.existe(objAspir.getAspirante())) {
-            aspirantes.add(objAspir);
+            this.aspirantes.add(objAspir);
             return true;
         }
         return false;
     }
 
     public boolean modificar(Aspirante objAspir) {
-        if (!this.existe(objAspir.getAspirante())) {
+        if (this.existe(objAspir.getAspirante())) {
             int p = this.getIndex(objAspir.getAspirante());
             Aspirante ax = aspirantes.get(p);
             ax.setNota(objAspir.getNota());
@@ -79,6 +80,15 @@ public class AspiranteCtrl {
         return prom / aspirantes.size();
     }
 
+    public DefaultTableModel getModelAspirantes() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new Aspirante().getTitles());
+        for (Aspirante a: aspirantes){
+            model.addRow(a.getData());
+        }
+        return model;
+    }
+
     @Override
     public String toString() {
         return "AspiranteCtrl {" +
@@ -116,6 +126,9 @@ public class AspiranteCtrl {
             System.out.println("registro eliminado");
         }
         System.out.println(act);
+
+        DefaultTableModel m = act.getModelAspirantes();
+        System.out.println(m);
 
     }
 }
