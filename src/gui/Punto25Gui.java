@@ -54,7 +54,8 @@ public class Punto25Gui extends JDialog {
         limpiarCamposButton.addActionListener(e -> limpiarCampos());
         asignaValoresAleatoriosButton.addActionListener(e -> asignaValoresAleatorios());
 
-        this.setSize(500, 320);
+        this.setTitle("Punto 25 - Identificación de triángulos por la longitud de sus lados");
+        this.setSize(600, 320);
         this.setLocationRelativeTo(this);
         this.setVisible(true);
     }

@@ -80,10 +80,30 @@ public class AspiranteCtrl {
         return prom / aspirantes.size();
     }
 
+    public int getCantidadAprobaron() {
+        int n = 0;
+        for (Aspirante a : aspirantes)
+            if (a.getNota() >= 3.0)
+                n++;
+        return n;
+    }
+
+    public int getCantidadNoAprobaron() {
+        int n = 0;
+        for (Aspirante a : aspirantes)
+            if (a.getNota() < 3.0)
+                n++;
+        return n;
+    }
+
+    public boolean hayAspirantes() {
+        return aspirantes.size() > 0;
+    }
+
     public DefaultTableModel getModelAspirantes() {
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(new Aspirante().getTitles());
-        for (Aspirante a: aspirantes){
+        for (Aspirante a : aspirantes) {
             model.addRow(a.getData());
         }
         return model;

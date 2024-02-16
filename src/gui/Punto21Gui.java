@@ -53,9 +53,10 @@ public class Punto21Gui extends JDialog {
         limpiarCamposButton.addActionListener(e -> limpiarCampos());
         asignaValoresAleatoriosButton.addActionListener(e -> asignaValoresAleatorios());
 
-        setSize(500, 300);
-        setLocationRelativeTo(this);
-        setVisible(true);
+        this.setTitle("Punto 21 - Operaciones lógicas con números");
+        this.setSize(500, 300);
+        this.setLocationRelativeTo(this);
+        this.setVisible(true);
     }
 
     private void validarCampos() {

@@ -7,7 +7,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
 
-public class Punto55 extends JDialog {
+public class Punto55Gui extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
@@ -28,7 +28,7 @@ public class Punto55 extends JDialog {
     private final int VALIDAR_TODOS_LOS_CAMPOS = 0;
     private final int VALIDAR_SOLO_CAMPOS_LLAVE = 1;
 
-    public Punto55() {
+    public Punto55Gui() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -80,7 +80,9 @@ public class Punto55 extends JDialog {
         this.aspCtrl = new AspiranteCtrl();
         this.dtm = new DefaultTableModel();
         actualizarTable();
-        this.setSize(700, 400);
+
+        this.setTitle("Punto 55 - Operaciones con grupo de estudiantes");
+        this.setSize(700, 500);
         this.setLocationRelativeTo(this);
         this.setVisible(true);
     }
@@ -182,12 +184,27 @@ public class Punto55 extends JDialog {
     }
 
     private void calcularPromedio() {
+        if (aspCtrl.hayAspirantes()) {
+            String r = String.valueOf(aspCtrl.getPromedio());
+            resultadoTextField.setText("Promedio: " + r);
+        } else
+            JOptionPane.showMessageDialog(null, "No se ha cargado un registro de estudiantes", "Error", JOptionPane.ERROR_MESSAGE);
     }
 
     private void getCantidadAspirantesAprobados() {
+        if (aspCtrl.hayAspirantes()) {
+            String r = String.valueOf(aspCtrl.getCantidadAprobaron());
+            resultadoTextField.setText("La cantidad de estudiantes que aprobaron es: " + r);
+        } else
+            JOptionPane.showMessageDialog(null, "No se ha cargado un registro de estudiantes", "Error", JOptionPane.ERROR_MESSAGE);
     }
 
     private void getCantidadAspirantesNoAprobados() {
+        if (aspCtrl.hayAspirantes()) {
+            String r = String.valueOf(aspCtrl.getCantidadNoAprobaron());
+            resultadoTextField.setText("La cantidad de estudiantes que no aprobaron es: " + r);
+        } else
+            JOptionPane.showMessageDialog(null, "No se ha cargado un registro de estudiantes", "Error", JOptionPane.ERROR_MESSAGE);
     }
 
     private void actualizarTable() {
@@ -207,7 +224,7 @@ public class Punto55 extends JDialog {
     }
 
     public static void main(String[] args) {
-        Punto55 dialog = new Punto55();
+        Punto55Gui dialog = new Punto55Gui();
         dialog.pack();
         System.exit(0);
     }
