@@ -11,6 +11,7 @@ public class MainGui extends JDialog {
     private JButton punto25Button;
     private JButton punto31Button;
     private JButton punto55Button;
+    private JButton punto43Button;
 
     public MainGui() {
         setContentPane(contentPane);
@@ -47,6 +48,7 @@ public class MainGui extends JDialog {
         punto25Button.addActionListener(e -> callPunto25());
         punto31Button.addActionListener(e -> callPunto31());
         punto55Button.addActionListener(e -> callPunto55());
+        punto43Button.addActionListener(e -> callPunto43());
 
         this.setTitle("Menú principal - Taller sesión 01");
         this.setSize(500, 300);
@@ -66,7 +68,11 @@ public class MainGui extends JDialog {
         Punto31Gui punto31Gui = new Punto31Gui();
     }
 
-    private void callPunto55() { Punto55Gui punto55Gui = new Punto55Gui(); }
+    private void callPunto43() { Punto43Gui punto43Gui = new Punto43Gui(); }
+
+    private void callPunto55() {
+        Punto55Gui punto55Gui = new Punto55Gui();
+    }
 
     private void onOK() {
         // add your code here
