@@ -52,7 +52,7 @@ public class Punto31Gui extends JDialog {
         asignarValoresAleatoriosButton.addActionListener(e -> asignarValoresAleatorios());
 
         this.setTitle("Punto 31 - Cálculo del gasto de consumo de agua en una vivienda");
-        this.setSize(700,400);
+        this.setSize(600,400);
         this.setLocationRelativeTo(this);
         this.setVisible(true);
     }

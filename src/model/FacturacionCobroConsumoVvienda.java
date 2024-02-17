@@ -35,9 +35,9 @@ public class FacturacionCobroConsumoVvienda {
         if (consumo <= 50)
             cargoConsumoLitros = cargoFijo;
         else if (consumo <= 200)
-            cargoConsumoLitros = this.consumo * 2600;
+            cargoConsumoLitros = cargoFijo + (this.consumo - 50) * 2600;
         else // if (consumo > 200)
-            cargoConsumoLitros = this.consumo * 2400;
+            cargoConsumoLitros = cargoFijo + (this.consumo - 50) * 2400;
         return cargoConsumoLitros;
     }
 
