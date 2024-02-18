@@ -3,25 +3,29 @@ package control.punto43;
 import model.punto43.Persona;
 
 import javax.swing.table.DefaultTableModel;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class PersonasArrayCtrl {
     private Persona[] personas;
     private int pos;
-    private final int MAX_REC = 50;
+    private final int MAX_REC = 10;
 
     public PersonasArrayCtrl() {
+        inicializaPersonas();
+    }
+
+    private void inicializaPersonas() {
         this.personas = new Persona[MAX_REC];
-        pos = 0;
+
+        pos = -1;
     }
 
     public boolean adicionar(Persona objPers) {
-        if (pos < MAX_REC)
+        if (pos < MAX_REC - 1)
             if (!this.existe(objPers.getNombre())) {
-                this.personas[pos] = objPers;
                 pos++;
+                this.personas[pos] = objPers;
                 return true;
             }
         return false;
@@ -44,17 +48,16 @@ public class PersonasArrayCtrl {
             int p = this.getIndex(strPers);
             Persona x = this.get(p);
             Persona[] px = personas.clone();
-            personas = new Persona[MAX_REC];
-            int j = 0;
-            for (int i = 0; i < MAX_REC; i++) {
+            int posx = pos;
+            inicializaPersonas();
+            for (int i = 0; i <= posx; i++) {
                 if (px[i].getNombre().equals(x.getNombre()))
                     continue;
                 else {
-                    personas[j] = px[i];
-                    j++;
+                    pos++;
+                    personas[pos] = px[i];
                 }
             }
-            this.pos = j;
             return true;
         }
         return false;
@@ -68,13 +71,13 @@ public class PersonasArrayCtrl {
     }
 
     public Persona get(int index) {
-        if (index <= MAX_REC)
+        if (index <= pos)
             return personas[index];
         return null;
     }
 
     public int getIndex(String strPers) {
-        for (int i = 0; i < MAX_REC; i++) {
+        for (int i = 0; i <= pos; i++) {
             if (personas[i].getNombre().equals(strPers))
                 return i;
         }
@@ -88,10 +91,10 @@ public class PersonasArrayCtrl {
         return false;
     }
 
-    public List<Persona> getTodos() {
-        List<Persona> p = new ArrayList<Persona>();
-        return p;
-    }
+//    public List<Persona> getTodos() {
+//        List<Persona> p = new ArrayList<Persona>();
+//        return p;
+//    }
 
     public boolean hayPersonas() {
         for (int i = 0; i < MAX_REC; i++) {
@@ -105,9 +108,10 @@ public class PersonasArrayCtrl {
     public DefaultTableModel getModel() {
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(new Persona().getTitles());
-        for (Persona p : personas) {
-            model.addRow(p.getData());
-        }
+        if (pos > -1)
+            for (int i = 0; i <= pos; i++) {
+                model.addRow(personas[i].getData());
+            }
         return model;
     }
 
@@ -190,6 +194,8 @@ public class PersonasArrayCtrl {
 
         p.modificar(new Persona("pedro", 'M', 24));
         System.out.println(p);
+
+        System.out.println(p.getModel());
 
         System.out.println("Cantidad hombres: " + p.getCantidadHombres());
         System.out.println("Cantidad mujeres: " + p.getCantidadMujeres());
