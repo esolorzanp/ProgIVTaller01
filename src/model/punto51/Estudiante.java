@@ -6,9 +6,9 @@ public class Estudiante {
     private double nota1;
     private double nota2;
     private double nota3;
-    private final String SISTEMAS = "Sistemas";
-    private final String MECANICA = "Mecánica";
-    private final String ELECTRONICA = "Electrónica";
+    public final String SISTEMAS = "Sistemas";
+    public final String MECANICA = "Mecánica";
+    public final String ELECTRONICA = "Electrónica";
 
     public Estudiante(String estudiante, String carrera, double nota1, double nota2, double nota3) {
         this.estudiante = estudiante;
@@ -126,12 +126,19 @@ public class Estudiante {
     }
 
     public String[] getTitles() {
-        return new String[]{"Estudiante", "Nota 1", "Nota 2", "Nota 3", "Nota final", "¿Materia aprobada?"};
+        return new String[]{"Estudiante",
+                "Carrera",
+                "Nota 1",
+                "Nota 2",
+                "Nota 3",
+                "Nota final",
+                "¿Materia aprobada?"};
     }
 
     public String[] getData() {
         return new String[]{
                 this.getEstudiante(),
+                this.getCarrera(),
                 String.valueOf(this.getNota1()),
                 String.valueOf(this.getNota2()),
                 String.valueOf(this.getNota3()),
@@ -148,7 +155,7 @@ public class Estudiante {
                 ", nota1=" + nota1 +
                 ", nota2=" + nota2 +
                 ", nota3=" + nota3 +
-                '}';
+                '}' + '\n';
     }
 
     public static void main(String[] args) {
