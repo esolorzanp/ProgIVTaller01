@@ -102,7 +102,7 @@ public class Punto51Gui extends JDialog {
         actualizarTable();
 
         this.setTitle("Punto 51 - Notas de estudiantes por carrera");
-        this.setSize(600, 600);
+        this.setSize(800, 600);
         this.setLocationRelativeTo(this);
         this.setVisible(true);
     }
