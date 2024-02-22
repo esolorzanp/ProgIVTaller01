@@ -203,14 +203,7 @@ public class Punto43ArrayGui extends JDialog {
     }
 
     private void traerDatos() {
-        String r = "Cantidad de personas asistentes a la fiesta: " + personasArrayCtrl.getCantidad() + '\n'
-                + "Cantidad de hombres: " + personasArrayCtrl.getCantidadHombres() + '\n'
-                + "Cantidad de mujeres: " + personasArrayCtrl.getCantidadMujeres() + '\n'
-                + "Promedio edad hombres: " + personasArrayCtrl.getPromedioEdadHombres() + '\n'
-                + "Promedio edad mujeres: " + personasArrayCtrl.getPromedioEdadMujeres() + '\n'
-                + "Edad persona mas joven: " + personasArrayCtrl.getEdadMenor() + '\n'
-                + "Edad persona mayor: " + personasArrayCtrl.getEdadMayor() + '\n';
-        resultadoTextArea.setText(r);
+        resultadoTextArea.setText(personasArrayCtrl.getResultados());
     }
 
     private void actualizarTable() {

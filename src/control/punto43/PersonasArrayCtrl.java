@@ -115,62 +115,36 @@ public class PersonasArrayCtrl {
         return model;
     }
 
-    public int getCantidad() {
-        return pos;
-    }
-
-    public int getCantidadHombres() {
-        int n = 0;
-        for (Persona p : personas)
-            if (p != null && p.getSexo() == 'M')
-                n++;
-        return n;
-    }
-
-    public int getCantidadMujeres() {
-        int n = 0;
-        for (Persona p : personas)
-            if (p != null && p.getSexo() == 'F')
-                n++;
-        return n;
-    }
-
-    public double getPromedioEdadHombres() {
-        int s = 0;
-        int c = 0;
-        for (Persona p : personas)
-            if (p != null && p.getSexo() == 'M') {
-                s += p.getEdad();
-                c++;
+    public String getResultados() {
+        int cantPersonas = 0;
+        int cantHombres = 0;
+        int cantMujeres = 0;
+        int acumEdadHombres = 0;
+        int acumEdadMujeres = 0;
+        int edadJoven = 900;
+        int edadMayor = 0;
+        for (Persona p : personas) {
+            if (p != null) {
+                cantPersonas++;
+                if (p.getSexo() == 'M') {
+                    cantHombres++;
+                    acumEdadHombres += p.getEdad();
+                }
+                if (p.getSexo() == 'F') {
+                    cantMujeres++;
+                    acumEdadMujeres += p.getEdad();
+                }
+                if (p.getEdad() < edadJoven) edadJoven = p.getEdad();
+                if (p.getEdad() > edadMayor) edadMayor = p.getEdad();
             }
-        return (double) s / c;
-    }
-
-    public double getPromedioEdadMujeres() {
-        int s = 0;
-        int c = 0;
-        for (Persona p : personas)
-            if (p != null && p.getSexo() == 'F') {
-                s += p.getEdad();
-                c++;
-            }
-        return (double) s / c;
-    }
-
-    public int getEdadMenor() {
-        int e = 999;
-        for (Persona p : personas)
-            if (p != null && p.getEdad() < e)
-                e = p.getEdad();
-        return e;
-    }
-
-    public int getEdadMayor() {
-        int e = 0;
-        for (Persona p : personas)
-            if (p != null && p.getEdad() > e)
-                e = p.getEdad();
-        return e;
+        }
+        return "Cantidad de personas asistentes a la fiesta: " + cantPersonas + '\n'
+                + "Cantidad de hombres: " + cantHombres + '\n'
+                + "Cantidad de mujeres: " + cantMujeres + '\n'
+                + (cantHombres > 0 ? "Promedio edad hombres: " + (acumEdadHombres / cantHombres) + '\n' : "")
+                + (cantMujeres > 0 ? "Promedio edad mujeres: " + (acumEdadMujeres / cantMujeres) + '\n' : "")
+                + "Edad persona mas joven: " + edadJoven + '\n'
+                + "Edad persona mayor: " + edadMayor + '\n';
     }
 
     @Override
@@ -182,26 +156,4 @@ public class PersonasArrayCtrl {
                 '}';
     }
 
-    public static void main(String[] args) {
-        PersonasArrayCtrl p = new PersonasArrayCtrl();
-
-        p.adicionar(new Persona("laura", 'F', 15));
-        p.adicionar(new Persona("pedro", 'F', 244));
-        p.adicionar(new Persona("Maria", 'F', 30));
-        p.adicionar(new Persona("paco", 'M', 18));
-        p.adicionar(new Persona("Santiago", 'M', 25));
-        System.out.println(p);
-
-        p.modificar(new Persona("pedro", 'M', 24));
-        System.out.println(p);
-
-        System.out.println(p.getModel());
-
-        System.out.println("Cantidad hombres: " + p.getCantidadHombres());
-        System.out.println("Cantidad mujeres: " + p.getCantidadMujeres());
-        System.out.println("Promedio edad hombres: " + p.getPromedioEdadHombres());
-        System.out.println("Promedio edad mujeres: " + p.getPromedioEdadMujeres());
-        System.out.println("Edad persona mas joven: " + p.getEdadMenor());
-        System.out.println("Edad persona mas mayor: " + p.getEdadMayor());
-    }
 }
